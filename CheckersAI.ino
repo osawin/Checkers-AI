@@ -489,9 +489,12 @@ int options(int l, int m[], int pa[], int pb[], int ka[], int kb[], int t) {
       c++;
     }
     if (d == 0) {
+      //if the space is open, record moving to that space as an option, and that there was an option
       m[z] = b+1-(8*t);
       z++;
     } else if (d != t && b%8 < 6 && b*t >= 32*t-16) {
+      //if there is an enemy piece in that space, and there is a space on the far side of that piece, jumping may be possible
+      //c iterates through pieces, if any of them are in the space on the far side of the jumped spot, increase d
       c = 0;
       d = 0;
       while (c <12) {
@@ -500,6 +503,7 @@ int options(int l, int m[], int pa[], int pb[], int ka[], int kb[], int t) {
         }c++;
       }
       if (d == 0) {
+        //if the jump is available, record the end point of the jump as an option, and that there was an option
         m[z] = b+2-(16*t);
         z++;
       }
